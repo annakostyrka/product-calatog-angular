@@ -1,0 +1,17 @@
+<div class="products-list">
+  <div class="product-item" *ngFor="let product of displayedProducts">
+    <img [src]="product.image_link" alt="product.name" />
+    <h5 class="product-title">{{ product.name }}</h5>
+    <div class="product-description">{{ product.description }}</div>
+    <div class="product-price">{{ product.price | currency : "USD" }}</div>
+  </div>
+</div>
+<div
+  class="show-more-section"
+  *ngIf="displayedProducts.length !== products.length"
+></div>
+<app-button
+  [buttonText]="'Load More Products'"
+  [buttonType]="'primaryButton'"
+  (click)="showMore()"
+></app-button>
