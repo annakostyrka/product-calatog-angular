@@ -10,6 +10,5 @@ export class ButtonComponent {
   @Input() buttonType: string = '';
 
   primaryColor = '#27c7cd';
-  secondaryColor = '#6c6ff2';
-
+  secondaryColor = '#333d44';
 }

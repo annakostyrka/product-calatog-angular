@@ -1,30 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../http.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Product } from '../interfaces/product';
 
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.scss']
+  styleUrls: ['./products-list.component.scss'],
 })
-export class ProductsListComponent implements OnInit {
-  products: any = [];
-  displayedProducts: any = [];
+export class ProductsListComponent {
+  @Input() products: Product[];
+  @Output() productAdded = new EventEmitter();
+  selectedProduct: Product;
+  isProductDetailsModalOpened = false;
 
-  constructor(private httpService: HttpService) {}
-
-  ngOnInit() {
-    this.httpService.getProducts().subscribe(data => {
-      this.products = data;
-      this.displayedProducts = this.products.slice(0, 9);
-      console.log(this.displayedProducts)
-    });
+  addProductToCart(product) {
+    this.productAdded.emit(product);
   }
 
-  showMore(){
-    let newProductsLength = this.displayedProducts.length + 6;
-    if(newProductsLength > this.products.length) {
-      newProductsLength = this.products.length;
-    }
-    this.displayedProducts = this.products.slice(0, newProductsLength);
-  };
+  showProductDetails(event:Product) {
+    this.selectedProduct = this.products.find(product => product.id === event.id)
+    this.isProductDetailsModalOpened = true;
+  }
+
+  closeProductDetailsModal() {
+    this.isProductDetailsModalOpened = false;
+  }
 }

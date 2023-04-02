@@ -1,0 +1,15 @@
+<header
+  id="header"
+  (scroll)="onScroll()"
+  [ngClass]="headerFixed ? 'fixed' : 'notfixed'"
+>
+  <div class="header-wrapper">
+    <div id="header-logo">
+      <img src="../../assets/image.svg" alt="site logo" />
+    </div>
+    <div id="cart-icon" (click)="openModal()">
+      <img src="../../assets/trolley-cart.png" alt="cart icon" />
+      <span class="cart-totals">{{ totalCartItems }}</span>
+    </div>
+  </div>
+</header>

@@ -17,24 +17,12 @@ button,
   outline: none;
   border: 2px solid;
   transition: all 0.3s ease;
-
-  &:after {
-    content: "";
-    display: block;
-    border-radius: 50px;
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    box-shadow: inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    transition: all 0.3s ease;
-  }
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  white-space: nowrap;
 
   &:hover {
-    &::after {
-      opacity: 1;
-    }
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+      rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    transition: all 0.3s ease;
   }
 }

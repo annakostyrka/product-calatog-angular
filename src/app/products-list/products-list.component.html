@@ -1,17 +1,38 @@
 <div class="products-list">
-  <div class="product-item" *ngFor="let product of displayedProducts">
-    <img [src]="product.image_link" alt="product.name" />
+  <div class="product-item" *ngFor="let product of products">
+    <img [src]="product.image" alt="product.image" />
     <h5 class="product-title">{{ product.name }}</h5>
     <div class="product-description">{{ product.description }}</div>
     <div class="product-price">{{ product.price | currency : "USD" }}</div>
+    <div class="action-buttons">
+      <app-button
+        class="read-more"
+        [buttonText]="'Details'"
+        (click)="showProductDetails(product)"
+      ></app-button>
+      <a class="add-to-cart-button" (click)="addProductToCart(product)"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="800"
+          height="800"
+          fill="none"
+          stroke="#000"
+          stroke-width="3"
+          viewBox="0 0 64 64"
+        >
+          <path
+            d="M4.62 9.96h10.72l6.37 27.89h27.98l6.48-21.5-39.5-.56M51.73 44.35H21.67a3.21 3.21 0 0 1-3.28-3.28c0-3.22 3.32-3.22 3.32-3.22"
+          />
+          <circle cx="24.95" cy="51.61" r="3.53" />
+          <circle cx="46.04" cy="51.61" r="3.53" /></svg
+      ></a>
+    </div>
   </div>
 </div>
-<div
-  class="show-more-section"
-  *ngIf="displayedProducts.length !== products.length"
-></div>
-<app-button
-  [buttonText]="'Load More Products'"
-  [buttonType]="'primaryButton'"
-  (click)="showMore()"
-></app-button>
+
+<app-product-details-modal
+  [product]="selectedProduct"
+  [isModalOpened]="isProductDetailsModalOpened"
+  (onCloseModal)="closeProductDetailsModal()"
+  (productAddedFromModal)="addProductToCart(selectedProduct)"
+></app-product-details-modal>

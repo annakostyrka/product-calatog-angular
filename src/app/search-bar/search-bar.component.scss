@@ -1,0 +1,24 @@
+h4 {
+  margin-bottom: 20px;
+}
+
+@media (min-width: 415px) and (max-width: 1199px) {
+  h4 {
+    margin-bottom: 40px;
+  }
+}
+
+.search-bar {
+  width: 280px;
+  border-radius: 50px;
+  outline: none;
+  border: 2px solid var(--green-themes);
+  padding: 10px 20px;
+  &:focus {
+    border-width: 1px;
+    filter: drop-shadow(0 0 0.25rem var(--green-themes));
+  }
+  &::placeholder {
+    color: rgb(204 204 204 / 80%);
+  }
+}

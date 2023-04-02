@@ -1,0 +1,38 @@
+<div class="card">
+  <h4>Filter By Price</h4>
+
+  <div class="price-content">
+    <div>
+      <label>Min</label>
+      <p id="min-value">{{ minValue | currency : "USD" }}</p>
+    </div>
+
+    <div>
+      <label>Max</label>
+      <p id="max-value">{{ maxValue | currency : "USD" }}</p>
+    </div>
+  </div>
+
+  <form [formGroup]="form" class="range-slider">
+    <input
+      type="range"
+      class="min-price"
+      min="0"
+      max="50"
+      step="1"
+      value="0"
+      FormControl="rangeStart"
+      (input)="handleMinRangeChanges($event)"
+    />
+    <input
+      type="range"
+      class="max-price"
+      min="0"
+      max="50"
+      step="1"
+      value="50"
+      FormControl="rangeEnd"
+      (input)="handleMaxRangeChanges($event)"
+    />
+  </form>
+</div>

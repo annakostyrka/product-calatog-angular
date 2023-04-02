@@ -1,3 +1,43 @@
-<div class="main">
-  <app-products-list></app-products-list>
+<app-header
+  [totalCartItems]="getCartTotals()"
+  (onOpenModal)="openCartModal()"
+></app-header>
+<div class="content-wrapper">
+  <aside>
+    <div class="aside-content-wrapper">
+      <app-price-range-filter
+        (inputMinValueChanged)="getMinRangeValue($event)"
+        (inputMaxValueChanged)="getMaxRangeValue($event)"
+      ></app-price-range-filter>
+      <app-search-bar
+        (searchInputChanged)="getSearchResults($event)"
+      ></app-search-bar>
+    </div>
+  </aside>
+  <div class="main">
+    <app-products-list
+      [products]="products$ | async | slice : 0 : productsLength"
+      (productAdded)="addProductToCart($event)"
+    ></app-products-list>
+    <div
+      class="show-more-section"
+      *ngIf="(products$ | async).length >= productsLength"
+    >
+      <app-button
+        [buttonText]="'Load More Products'"
+        [buttonType]="'primaryButton'"
+        (click)="showMore()"
+      ></app-button>
+    </div>
+  </div>
 </div>
+
+<app-shopping-cart-modal
+  [isModalOpened]="isCartModalOpened"
+  [products]="cartProductList"
+  [cartTotal]="getCartTotals()"
+  [totalPrice]="totalPrice()"
+  (productRemoved)="removeProduct($event)"
+  (productRemovedFromCart)="removeProduct($event)"
+  (onCloseModal)="closeCartModal()"
+></app-shopping-cart-modal>
