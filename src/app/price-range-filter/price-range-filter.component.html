@@ -20,9 +20,7 @@
       min="0"
       max="50"
       step="1"
-      value="0"
-      FormControl="rangeStart"
-      (input)="handleMinRangeChanges($event)"
+      formControlName="rangeStart"
     />
     <input
       type="range"
@@ -30,9 +28,7 @@
       min="0"
       max="50"
       step="1"
-      value="50"
-      FormControl="rangeEnd"
-      (input)="handleMaxRangeChanges($event)"
+      formControlName="rangeEnd"
     />
   </form>
 </div>
