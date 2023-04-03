@@ -41,10 +41,11 @@
   }
 }
 
-@media (min-width: 415px) and (max-width: 1199px) {
+@media (min-width: 568px) and (max-width: 1199px) {
   .aside-content-wrapper {
     flex-direction: row !important;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    gap: 40px;
   }
 }
